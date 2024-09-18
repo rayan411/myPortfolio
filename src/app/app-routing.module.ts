@@ -7,6 +7,7 @@ import { CertificationsComponent } from './pages/certifications/certifications.c
 
 const routes: Routes = [
   { path: '', component: HomeComponent }, // Default route
+  { path: 'Home ', component: HomeComponent }, // Default route
   { path: 'work', component: WorkComponent },
   { path: 'articles', component: ArticlsComponent },
   { path: 'certifications', component: CertificationsComponent },

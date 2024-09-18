@@ -4,14 +4,17 @@ module.exports = {
     "./src/**/*.{html,ts}",
   ],
   theme: {
-    extend: {colors: {
-      primary: '#334257', 
-      secondary: '#548ca8',  
-      background: '#eeeeee', 
+    extend: {
+      colors: {
+        primary: '#1E1B18', 
+        secondary: '#2660A4',  
+        background: '#FFFAFF', 
+        background2: '#002147', 
+      },
+      fontFamily: {
+        readex: ['ReadexPro', 'sans-serif'],
+      },
     },
-  },
   },
   plugins: [],
 }
-
-

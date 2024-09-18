@@ -9,5 +9,45 @@ html {
 body {
     direction: rtl;
     text-align: right;
+    font-family: 'ReadexPro', sans-serif;
+    
   }
+  
+  @font-face {
+    font-family: 'ReadexPro';
+    src: url('/assets/fonts/ReadexPro-Bold.ttf') format('truetype');
+    font-weight: bold;
+  }
+  
+  @font-face {
+    font-family: 'ReadexPro';
+    src: url('/assets/fonts/ReadexPro-ExtraLight.ttf') format('truetype');
+    font-weight: 200;
+  }
+  
+  @font-face {
+    font-family: 'ReadexPro';
+    src: url('/assets/fonts/ReadexPro-Light.ttf') format('truetype');
+    font-weight: 300;
+  }
+  
+  @font-face {
+    font-family: 'ReadexPro';
+    src: url('/assets/fonts/ReadexPro-Medium.ttf') format('truetype');
+    font-weight: 500;
+  }
+  
+  @font-face {
+    font-family: 'ReadexPro';
+    src: url('/assets/fonts/ReadexPro-Regular.ttf') format('truetype');
+    font-weight: normal;
+  }
+  
+  @font-face {
+    font-family: 'ReadexPro';
+    src: url('/assets/fonts/ReadexPro-SemiBold.ttf') format('truetype');
+    font-weight: 600;
+  }
+  
+  
   

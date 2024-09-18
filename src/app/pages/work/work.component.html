@@ -1,15 +1,37 @@
-<section class="bg-gray-100 p-8">
-    <h2 class="text-3xl font-bold mb-6 text-center">أعمالي</h2>
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-      <div class="bg-white p-4 border rounded shadow hover:shadow-lg transition">
-        <h3 class="text-2xl font-semibold">مشروع 1</h3>
-        <p class="mt-2 text-gray-600">تفاصيل المشروع.</p>
+<section class="bg-background2 p-8">
+  <div class="mb-6 text-center">
+    <h2 class="text-white text-3xl font-bold">أعمالي</h2>
+  </div>
+
+  <section class="mb-8">
+    <div class="grid grid-cols-1 sm:grid-cols-3 gap-6">
+      <div *ngFor="let project of project" class="mx-3 mt-6 flex flex-col self-start rounded-lg bg-background text-surface shadow-secondary-1 dark:bg-surface-dark dark:text-white sm:shrink-0 sm:grow sm:basis-0" style="min-height: 400px; height: 100%;">
+        <a [routerLink]="['/product', project.id]" class="flex flex-col h-full">
+          <img [src]="project.imageUrl" class="rounded-t-lg w-full object-cover h-48" alt="{{ project.name }}" />
+
+          <!-- المحتويات الأساسية: اسم المشروع + الوصف -->
+          <div class="p-6 font-arabic text-center text-black flex-grow">
+            <h5 class="text-2xl font-medium leading-tight mb-4">{{ project.name }}</h5> <!-- حجم النص أكبر -->
+            
+            <!-- الوصف مع تحديد عدد الأسطر -->
+            <p class="description text-gray-600 mb-4">
+              {{ project.description }}
+            </p>
+          </div>
+
+          <!-- الزر في الأسفل -->
+          <div class="p-6">
+            <button class="mt-auto bg-secondary text-white font-bold py-2 px-4 rounded hover:bg-blue-500 transition ease-in-out duration-300 w-full">
+              اقرأ المزيد
+            </button>
+          </div>
+        </a>
       </div>
-      <div class="bg-white p-4 border rounded shadow hover:shadow-lg transition">
-        <h3 class="text-2xl font-semibold">مشروع 2</h3>
-        <p class="mt-2 text-gray-600">تفاصيل المشروع.</p>
-      </div>
-      <!-- المزيد من المشاريع -->
     </div>
   </section>
-  
+
+  <!-- عرض رسالة إذا لم تكن هناك مشاريع -->
+  <div *ngIf="project.length === 0" class="text-center mt-4 text-lg text-gray-500">
+    لا توجد مشاريع متاحة في الوقت الحالي.
+  </div>
+</section>

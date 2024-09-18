@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, HostListener } from '@angular/core';
 
 @Component({
   selector: 'app-header',
@@ -7,4 +7,15 @@ import { Component } from '@angular/core';
 })
 export class HeaderComponent {
 
+  @HostListener('window:scroll', [])
+  onWindowScroll() {
+    const header = document.getElementById('header');
+    if (window.pageYOffset > 50) {
+      header?.classList.add('bg-white', 'text-gray-700', 'shadow-md');
+      header?.classList.remove('bg-transparent', 'text-white');
+    } else {
+      header?.classList.add('bg-transparent', 'text-white');
+      header?.classList.remove('bg-white', 'text-gray-700', 'shadow-md');
+    }
+  }
 }
