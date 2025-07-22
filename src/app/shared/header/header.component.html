@@ -1,38 +1,37 @@
-<header class=" bg-background shadow-md fixed top-0 left-0 w-full z-20">
-  <div class="container mx-auto px-4 py-4 flex justify-between items-center">
-    <!-- Logo -->
-    <div class="text-4xl font-bold  text-secondary ">
+<header class="bg-background shadow-md fixed top-0 left-0 w-full z-20">
+  <div class="flex justify-between items-center px-4 sm:px-6 py-3 max-w-5xl mx-auto">
+    <!-- الشعار -->
+    <div class="text-xl sm:text-2xl font-bold text-secondary">
       <a href="#">ريان</a>
     </div>
 
-    <!-- Navigation Links -->
-    <nav class="hidden md:flex space-x-8 rtl:space-x-reverse text-xl">
-      <a href="#home" class="text-gray-700 hover:text-blue-600 transition">الرئيسية</a>
-      <a href="#work" class="text-gray-700 hover:text-blue-600 transition">أعمالي</a>
-      <a href="#articles" class="text-gray-700 hover:text-blue-600 transition">مقالاتي</a>
-      <a href="#certifications" class="text-gray-700 hover:text-blue-600 transition">شهاداتي</a>
-      <a href="#contact" class="text-gray-700 hover:text-blue-600 transition">اتصل بي</a>
-    </nav>
-  
-
-
-    <!-- Mobile Menu Button -->
+    <!-- زر القائمة (يظهر فقط في الجوال) -->
     <div class="md:hidden">
-      <button id="menu-btn" class="text-gray-700 hover:text-blue-600 focus:outline-none">
-        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+      <button (click)="isMenuOpen = !isMenuOpen" class="text-gray-700 hover:text-blue-600 focus:outline-none">
+        <svg *ngIf="!isMenuOpen" xmlns="http://www.w3.org/2000/svg" class="h-7 w-7" fill="none" viewBox="0 0 24 24" stroke="currentColor">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
+        </svg>
+        <!-- أيقونة إغلاق إذا القائمة مفتوحة -->
+        <svg *ngIf="isMenuOpen" xmlns="http://www.w3.org/2000/svg" class="h-7 w-7" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
         </svg>
       </button>
     </div>
+
+    <!-- روابط النافبار (ديسكتوب فقط) -->
+    <nav class="hidden md:flex space-x-8 rtl:space-x-reverse text-base sm:text-lg lg:text-xl">
+      <a [class.text-secondary]="isActive('home')" href="#home" class="text-gray-700 hover:text-blue-600 transition">الرئيسية</a>
+      <a [class.text-secondary]="isActive('work')" href="#work" class="text-gray-700 hover:text-blue-600 transition">أعمالي</a>
+      <a [class.text-secondary]="isActive('certifications')" href="#certifications" class="text-gray-700 hover:text-blue-600 transition">شهاداتي</a>
+      <a [class.text-secondary]="isActive('contact')" href="#contact" class="text-gray-700 hover:text-blue-600 transition">اتصل بي</a>
+    </nav>
   </div>
 
-  <!-- Mobile Menu (hidden by default) -->
-  <div id="mobile-menu" class="md:hidden hidden bg-white px-4 py-4">
-    <a href="#home" class="block text-gray-700 hover:text-blue-600 transition mb-2">الرئيسية</a>
-    <a href="#work" class="block text-gray-700 hover:text-blue-600 transition mb-2">أعمالي</a>
-    <a href="#articles" class="block text-gray-700 hover:text-blue-600 transition mb-2">مقالاتي</a>
-    <a href="#certifications" class="block text-gray-700 hover:text-blue-600 transition mb-2">شهاداتي</a>
-    <a href="#contact" class="block text-gray-700 hover:text-blue-600 transition">اتصل بي</a>
+  <!-- قائمة الجوال (تظهر عند الضغط على الزر) -->
+  <div *ngIf="isMenuOpen" class="md:hidden bg-white px-4 py-4 border-b rounded-b-lg shadow-lg animate-fade-in-down">
+    <a (click)="closeMenu()" [class.text-secondary]="isActive('home')" href="#home" class="block text-gray-700 hover:text-blue-600 transition mb-2">الرئيسية</a>
+    <a (click)="closeMenu()" [class.text-secondary]="isActive('work')" href="#work" class="block text-gray-700 hover:text-blue-600 transition mb-2">أعمالي</a>
+    <a (click)="closeMenu()" [class.text-secondary]="isActive('certifications')" href="#certifications" class="block text-gray-700 hover:text-blue-600 transition mb-2">شهاداتي</a>
+    <a (click)="closeMenu()" [class.text-secondary]="isActive('contact')" href="#contact" class="block text-gray-700 hover:text-blue-600 transition">اتصل بي</a>
   </div>
-
 </header>

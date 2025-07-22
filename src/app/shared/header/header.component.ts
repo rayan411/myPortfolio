@@ -6,16 +6,27 @@ import { Component, HostListener } from '@angular/core';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent {
+  currentSection: string = '';
+  isMenuOpen: boolean = false; // <--- متغير جديد للتحكم بالقائمة
 
-  @HostListener('window:scroll', [])
+  @HostListener('window:scroll', ['$event'])
   onWindowScroll() {
-    const header = document.getElementById('header');
-    if (window.pageYOffset > 50) {
-      header?.classList.add('bg-white', 'text-gray-700', 'shadow-md');
-      header?.classList.remove('bg-transparent', 'text-white');
-    } else {
-      header?.classList.add('bg-transparent', 'text-white');
-      header?.classList.remove('bg-white', 'text-gray-700', 'shadow-md');
-    }
+    const sections = document.querySelectorAll('section');
+    sections.forEach(section => {
+      const rect = section.getBoundingClientRect();
+      const sectionId = section.getAttribute('id');
+      if (rect.top >= 0 && rect.top < window.innerHeight / 2) {
+        this.currentSection = sectionId || '';
+      }
+    });
+  }
+
+  isActive(section: string): boolean {
+    return this.currentSection === section;
+  }
+
+  // زر إغلاق القائمة عند اختيار رابط أو الضغط بالخارج (اختياري)
+  closeMenu() {
+    this.isMenuOpen = false;
   }
 }
