@@ -13,6 +13,8 @@ module.exports = {
       },
       fontFamily: {
         readex: ['ReadexPro', 'sans-serif'],
+        poppins: ['Poppins', 'sans-serif'],
+
       },
     },
   },

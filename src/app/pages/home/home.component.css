@@ -1,0 +1,33 @@
+:root {
+  --secondary: #2660A4;
+}
+
+.name-typing {
+  display: inline-block;
+  font-size: 3rem;
+  font-weight: 800;
+  white-space: nowrap;
+  color: transparent;
+  -webkit-text-stroke: 2px var(--secondary);
+  text-stroke: 2px var(--secondary);
+  border-right: 4px solid var(--secondary);
+  overflow: hidden;
+  width: 0;
+  /* عدد الخطوات 15 لأن الاسم فيه 15 حرف (بما فيها المسافة) */
+  animation:
+    typing 2.2s steps(15, end) forwards,
+    fill 2.2s linear forwards,
+    caret-hide 0.1s linear 2.2s forwards;
+}
+
+@keyframes typing {
+  from { width: 0; }
+  to   { width: 100%; }
+}
+@keyframes fill {
+  from { color: transparent; }
+  to   { color: var(--secondary); }
+}
+@keyframes caret-hide {
+  from, to { border-right-color: transparent; }
+}
