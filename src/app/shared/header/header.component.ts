@@ -6,26 +6,36 @@ import { Component, HostListener } from '@angular/core';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent {
-  currentSection: string = '';
-  isMenuOpen: boolean = false; // <--- متغير جديد للتحكم بالقائمة
+  currentSection: string = 'home'; // البداية
 
-  @HostListener('window:scroll', ['$event'])
+  isMenuOpen: boolean = false;
+
+  // عند التمرير، راقب الأقسام وقيمتها من الأعلى
+  @HostListener('window:scroll', [])
   onWindowScroll() {
-    const sections = document.querySelectorAll('section');
-    sections.forEach(section => {
-      const rect = section.getBoundingClientRect();
-      const sectionId = section.getAttribute('id');
-      if (rect.top >= 0 && rect.top < window.innerHeight / 2) {
-        this.currentSection = sectionId || '';
+    const sectionIds = ['home', 'work', 'certifications', 'about', 'contact'];
+    let found = false;
+    for (let i = 0; i < sectionIds.length; i++) {
+      const section = document.getElementById(sectionIds[i]);
+      if (section) {
+        const rect = section.getBoundingClientRect();
+        // إذا وصل أعلى القسم لنقطة معينة من الشاشة (مثلا 100 بكسل من الأعلى)
+        if (rect.top <= 100 && rect.bottom > 100) {
+          this.currentSection = sectionIds[i];
+          found = true;
+          break;
+        }
       }
-    });
+    }
+    if (!found) {
+      this.currentSection = 'home'; // default إذا ما فيه قسم ظاهر
+    }
   }
 
   isActive(section: string): boolean {
     return this.currentSection === section;
   }
 
-  // زر إغلاق القائمة عند اختيار رابط أو الضغط بالخارج (اختياري)
   closeMenu() {
     this.isMenuOpen = false;
   }

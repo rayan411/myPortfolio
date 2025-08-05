@@ -7,13 +7,29 @@
     
     <!-- Navbar (right, desktop only) -->
     <nav class="hidden md:flex items-center gap-8 text-lg font-medium">
-      <a [class.text-secondary]="isActive('home')" href="#home" class="text-gray-700 hover:text-secondary transition">Home</a>
-      <a [class.text-secondary]="isActive('work')" href="#work" class="text-gray-700 hover:text-secondary transition">Work</a>
-      <a [class.text-secondary]="isActive('contact')" href="#contact" class="text-gray-700 hover:text-secondary transition">Contact</a>
+      <a 
+        href="#home"
+        [ngClass]="{'text-secondary': isActive('home'), 'text-gray-700': !isActive('home')}"
+        class="hover:text-secondary transition"
+        (click)="closeMenu()"
+      >Home</a>
+      <a 
+        href="#work"
+        [ngClass]="{'text-secondary': isActive('work'), 'text-gray-700': !isActive('work')}"
+        class="hover:text-secondary transition"
+        (click)="closeMenu()"
+      >Work</a>
+    
+      <a 
+        href="#contact"
+        [ngClass]="{'text-secondary': isActive('contact'), 'text-gray-700': !isActive('contact')}"
+        class="hover:text-secondary transition"
+        (click)="closeMenu()"
+      >Contact</a>
     </nav>
     
     <!-- Hamburger menu (mobile only) -->
-    <div class="md:hidden ">
+    <div class="md:hidden">
       <button (click)="isMenuOpen = !isMenuOpen" class="text-secondary hover:text-primary focus:outline-none transition">
         <svg *ngIf="!isMenuOpen" xmlns="http://www.w3.org/2000/svg" class="h-7 w-7" fill="none" viewBox="0 0 24 24" stroke="currentColor">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
@@ -26,9 +42,25 @@
   </div>
 
   <!-- Mobile menu -->
-  <div *ngIf="isMenuOpen" class="md:hidden items-center  justify-center bg-white px-6 py-4 border-b shadow animate-fade-in-down rounded-b-xl space-y-2">
-    <a (click)="closeMenu()" [class.text-secondary]="isActive('home')" href="#home" class="block text-gray-700 hover:text-secondary transition">Home</a>
-    <a (click)="closeMenu()" [class.text-secondary]="isActive('work')" href="#work" class="block text-gray-700 hover:text-secondary transition">Work</a>
-    <a (click)="closeMenu()" [class.text-secondary]="isActive('contact')" href="#contact" class="block text-gray-700 hover:text-secondary transition">Contact</a>
+  <div *ngIf="isMenuOpen" class="md:hidden items-center justify-center bg-white px-6 py-4 border-b shadow animate-fade-in-down rounded-b-xl space-y-2">
+    <a 
+      href="#home"
+      (click)="closeMenu()" 
+      [ngClass]="{'text-secondary': isActive('home'), 'text-gray-700': !isActive('home')}"
+      class="block text-lg font-medium hover:text-secondary transition"
+    >Home</a>
+    <a 
+      href="#work"
+      (click)="closeMenu()" 
+      [ngClass]="{'text-secondary': isActive('work'), 'text-gray-700': !isActive('work')}"
+      class="block text-lg font-medium hover:text-secondary transition"
+    >Work</a>
+
+    <a 
+      href="#contact"
+      (click)="closeMenu()" 
+      [ngClass]="{'text-secondary': isActive('contact'), 'text-gray-700': !isActive('contact')}"
+      class="block text-lg font-medium hover:text-secondary transition"
+    >Contact</a>
   </div>
 </header>
