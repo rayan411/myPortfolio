@@ -1,56 +1,44 @@
-<section class="bg-background  py-12 px-4 md:px-12" dir="rtl">
-  <div class="max-w-7xl mx-auto grid md:grid-cols-2 gap-10 items-start bg-white rounded-2xl shadow-lg p-8">
-
-    <div>
-      <h3 class="text-secondary font-semibold mb-2">تواصل معنا</h3>
-      <h2 class="text-3xl font-bold text-primary mb-4">يسعدنا تواصلك معنا</h2>
-      <p class="text-gray-500 mb-6">
-        لديك أي استفسار أو ملاحظة؟ نحن هنا للمساعدة. أرسل رسالتك وسنرد خلال 24 ساعة بإذن الله.
-      </p>
-
-      <form class="space-y-4">
-        <div class="grid grid-cols-2 gap-4">
-          <input type="text" placeholder="الاسم الأول" class="border rounded-md p-3 w-full focus:outline-none focus:ring-2 focus:ring-secondary">
-          <input type="text" placeholder="اسم العائلة" class="border rounded-md p-3 w-full focus:outline-none focus:ring-2 focus:ring-secondary">
-        </div>
-
-        <input type="email" placeholder="بريدك الإلكتروني" class="border rounded-md p-3 w-full focus:outline-none focus:ring-2 focus:ring-secondary">
-        <input type="text" placeholder="رقم الهاتف" class="border rounded-md p-3 w-full focus:outline-none focus:ring-2 focus:ring-secondary">
-        
-        <textarea rows="5" placeholder="اكتب رسالتك هنا" class="border rounded-md p-3 w-full focus:outline-none focus:ring-2 focus:ring-secondary"></textarea>
-
-        <button type="submit" class="bg-secondary text-white py-3 px-6 rounded-lg hover:bg-blue-800 transition">إرسال الرسالة</button>
-      </form>
-    </div>
-
-    <!-- معلومات التواصل -->
-    <div class="flex flex-col items-center space-y-6">
-      <img src="assets/images/me.jpg" alt="صورة شخصية" class="w-48 h-48 rounded-xl object-cover shadow-md">
-
-      <div class="bg-background2 text-white w-full p-6 rounded-xl space-y-4">
-        <div class="flex items-start space-x-4 rtl:space-x-reverse">
-          <span class="text-2xl">📧</span>
-          <div>
-            <p class="font-bold">البريد الإلكتروني</p>
-            <p class="text-sm">ryyyanolyy<span>&commat;</span>gmail.com</p>
-          </div>
-        </div>
-        <div class="flex items-start space-x-4 rtl:space-x-reverse">
-          <span class="text-2xl">📞</span>
-          <div>
-            <p class="font-bold">رقم الهاتف</p>
-            <p class="text-sm">966531378082</p>
-          </div>
-        </div>
-        <div class="flex items-start space-x-4 rtl:space-x-reverse">
-          <span class="text-2xl">📍</span>
-          <div>
-            <p class="font-bold">العنوان</p>
-            <p class="text-sm">جدة، المملكة العربية السعودية</p>
-          </div>
-        </div>
+<section class="min-h-screen flex items-center justify-center bg-background px-2 py-10">
+  <div class="w-full max-w-xl mx-auto">
+    <div class=" rounded-2xl p-6 sm:p-12">
+      <div class="text-center mb-10">
+        <h2 class="text-3xl sm:text-4xl font-extrabold text-secondary mb-2 font-readex">Send me a message!</h2>
+        <p class="text-base text-background2/80 font-poppins">Got a question or proposal, or just want to say hello? Go ahead.</p>
       </div>
+      <!-- Form -->
+      <form action="https://formspree.io/f/myzpdqpd" method="POST" class="flex flex-col gap-7">
+  <div class="flex flex-col md:flex-row gap-7">
+    <div class="flex-1">
+      <label for="name" class="block text-background2 font-bold mb-2 text-left">Your Name</label>
+      <input type="text" id="name" name="name" placeholder="Enter your name"
+             class="w-full border-b-2 border-background2/20 focus:border-secondary transition outline-none py-3 text-primary bg-transparent font-poppins placeholder:text-background2/50 text-base text-left"
+             autocomplete="off" required>
     </div>
+    <div class="flex-1">
+      <label for="email" class="block text-background2 font-bold mb-2 text-left">Email Address</label>
+      <input type="email" id="email" name="email" placeholder="Enter your email address"
+             class="w-full border-b-2 border-background2/20 focus:border-secondary transition outline-none py-3 text-primary bg-transparent font-poppins placeholder:text-background2/50 text-base text-left"
+             autocomplete="off" required>
+    </div>
+  </div>
+  <div>
+    <label for="message" class="block text-background2 font-bold mb-2 text-left">Your Message</label>
+    <textarea id="message" name="message" rows="3" placeholder="Hi, I think we need a design system..."
+              class="w-full border-b-2 border-background2/20 focus:border-secondary transition outline-none py-3 text-primary bg-transparent font-poppins placeholder:text-background2/50 text-base resize-y text-left" required></textarea>
+  </div>
+  <div class="flex justify-center mt-2">
+    <button type="submit"
+            class="px-10 py-3 border-2 border-secondary text-secondary font-bold rounded-xl hover:bg-secondary hover:text-background transition-all duration-150 font-readex shadow-sm focus:outline-none focus:ring-2 focus:ring-secondary focus:ring-offset-2 active:scale-95 tracking-wide flex items-center gap-2">
+      SHOOT
+      <svg class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+      </svg>
+    </button>
+  </div>
+</form>
 
+    </div>
   </div>
 </section>
+
+
