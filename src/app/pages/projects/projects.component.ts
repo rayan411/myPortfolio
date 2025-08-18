@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { Project } from 'src/app/models/project/project.model';
+import { DATA_PROJECTS, SOFTWARE_PROJECTS } from 'src/app/data/projects.data';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-projects',
@@ -7,29 +9,14 @@ import { Project } from 'src/app/models/project/project.model';
   styleUrls: ['./projects.component.css']
 })
 export class ProjectsComponent {
-  projects: Project[] = [
-      {
-    title: 'UJ Bridge - Graduation Project',
-    description: 'An app that helps students build organized learning paths with progress tracking and curated resources.',
-    image: 'assets/images/grad-project.png',
-    techs: ['Flutter', 'Dart', 'Firebase'],
-    github: 'https://github.com/rayan411/GRADproject',
-  },
-  {
-    title: 'Office Store',
-    description: 'A complete office e-commerce system with Angular frontend and Node.js backend.',
-    image: 'assets/images/office-store.png',
-    techs: ['Angular', 'Node.js', 'PostgreSQL'],
-    github: 'https://github.com/rayan411/office-ecommerce-backend',
-  },
-  {
-    title: 'Personal Portfolio',
-    description: 'My personal website for showcasing my work and skills.',
-    image: 'assets/images/portfolio.png',
-    techs: ['Angular', 'Tailwind CSS'],
-    github: 'https://github.com/rayan411/myPortfolio',
-  },
+  pageTitle = 'مشاريعي';
+  pageSubtitle = 'Data & Software Projects';
+  dataProjects: Project[] = DATA_PROJECTS;
+  softwareProjects: Project[] = SOFTWARE_PROJECTS;
 
-    // أضف المزيد حسب مشاريعك
-  ];
+  constructor(private router: Router) {}
+
+  goHome() {
+    this.router.navigateByUrl('/');
+  }
 }

@@ -1,15 +1,218 @@
-<section class="bg-white p-8">
-    <h2 class="text-3xl font-bold mb-6 text-center">شهاداتي</h2>
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-      <div class="p-4 border rounded shadow">
-        <h3 class="text-xl font-semibold">شهادة 1</h3>
-        <p class="mt-2 text-gray-600">تفاصيل الشهادة.</p>
-      </div>
-      <div class="p-4 border rounded shadow">
-        <h3 class="text-xl font-semibold">شهادة 2</h3>
-        <p class="mt-2 text-gray-600">تفاصيل الشهادة.</p>
-      </div>
-      <!-- المزيد من الشهادات -->
+<section
+  dir="ltr"
+  class="min-h-screen bg-background px-4 sm:px-6 md:px-10 py-16"
+>
+  <div class="max-w-7xl mx-auto">
+      <a routerLink="/"
+         class="inline-flex items-center gap-2 px-4 py-2 rounded-xl border text-secondary font-semibold hover:bg-secondary hover:text-white transition duration-300 shadow-sm">
+        <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+        </svg>
+        Back to Home
+      </a>
+
+    <!-- Header -->
+    <header class="mb-8 md:mb-12 text-center md:text-left">
+      <h1 class="text-3xl md:text-4xl font-extrabold text-secondary">
+        Certificates
+      </h1>
+      <p class="text-gray-600 mt-3">
+        A selection of my certified courses and achievements
+      </p>
+    </header>
+
+    <!-- Filters -->
+    <div
+      class="mb-8 grid grid-cols-1 md:grid-cols-3 gap-3 bg-white/70 backdrop-blur rounded-2xl p-4 shadow-sm"
+    >
+      <input
+        type="text"
+        [(ngModel)]="query"
+        (input)="applyFilters()"
+        placeholder="Search by title, issuer, or tags"
+        class="w-full rounded-xl border border-gray-200 px-4 py-3 outline-none focus:ring-2 focus:ring-secondary/50"
+      />
+
+      <select
+        [(ngModel)]="issuer"
+        (change)="applyFilters()"
+        class="w-full rounded-xl border border-gray-200 px-4 py-3 outline-none focus:ring-2 focus:ring-secondary/50"
+      >
+        <option *ngFor="let i of issuers" [value]="i">
+          {{ i === "all" ? "All issuers" : i }}
+        </option>
+      </select>
+
+      <button
+        (click)="resetFilters()"
+        class="rounded-xl px-4 py-3 bg-secondary text-white font-semibold shadow hover:opacity-90 transition"
+      >
+        Reset
+      </button>
     </div>
-  </section>
-  
+
+    <!-- Grid -->
+<!-- Software Development -->
+<h2 class="mt-4 mb-4 text-xl font-bold text-secondary">Software Development</h2>
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+  <article
+    *ngFor="let c of filteredSoftware; trackBy: trackById"
+    class="group relative flex flex-col rounded-2xl bg-white shadow-sm ring-1 ring-gray-100 overflow-hidden hover:shadow-lg transition h-[520px]"
+  >
+    <!-- Image -->
+    <button type="button" (click)="openModal(c)" class="block w-full overflow-hidden">
+      <img
+        [src]="c.image"
+        [alt]="c.title + ' - ' + c.issuer"
+        class="w-full h-[200px] object-cover object-center group-hover:scale-[1.02] transition"
+        referrerpolicy="no-referrer"
+        onerror="this.src='/assets/certificates/placeholder.png'"
+      />
+    </button>
+
+    <!-- Info -->
+    <div class="flex-1 flex flex-col p-4">
+      <h3 class="text-lg font-bold text-secondary line-clamp-2" title="{{ c.title }}">
+        {{ c.title }}
+      </h3>
+      <div class="mt-1 text-sm text-gray-600 flex items-center justify-between">
+        <span class="truncate" title="{{ c.issuer }}">{{ c.issuer }}</span>
+        <time class="shrink-0" [attr.datetime]="c.date">{{ c.date | date:'MMM y':'':'en-US' }}</time>
+      </div>
+
+      <div class="mt-3 flex flex-wrap gap-2 min-h-[64px]">
+        <span *ngFor="let t of c.tags" class="text-xs px-2 py-1 rounded-full bg-secondary/10 text-secondary">
+          #{{ t }}
+        </span>
+      </div>
+
+      <div class="mt-auto pt-4 flex items-center gap-3">
+        <a *ngIf="c.link" [href]="c.link" target="_blank" rel="noopener"
+           class="inline-flex items-center justify-center rounded-lg px-3 py-2 text-sm font-semibold bg-background2 text-white hover:opacity-90 transition">
+          View certificate
+        </a>
+        <button type="button" (click)="openModal(c)"
+                class="inline-flex items-center justify-center rounded-lg px-3 py-2 text-sm font-semibold border border-gray-200 hover:bg-gray-50 transition">
+          Preview
+        </button>
+      </div>
+    </div>
+
+    <div class="pointer-events-none absolute inset-0 opacity-0 group-hover:opacity-100 transition bg-gradient-to-t from-black/0 via-transparent to-white/10"></div>
+  </article>
+</div>
+
+<!-- Data & Analytics -->
+<h2 class="mt-10 mb-4 text-xl font-bold text-secondary">Data & Analytics</h2>
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+  <article
+    *ngFor="let c of filteredData; trackBy: trackById"
+    class="group relative flex flex-col rounded-2xl bg-white shadow-sm ring-1 ring-gray-100 overflow-hidden hover:shadow-lg transition h-[520px]"
+  >
+    <!-- Image -->
+    <button type="button" (click)="openModal(c)" class="block w-full overflow-hidden">
+      <img
+        [src]="c.image"
+        [alt]="c.title + ' - ' + c.issuer"
+        class="w-full h-[200px] object-cover object-center group-hover:scale-[1.02] transition"
+        referrerpolicy="no-referrer"
+        onerror="this.src='/assets/certificates/placeholder.png'"
+      />
+    </button>
+
+    <!-- Info -->
+    <div class="flex-1 flex flex-col p-4">
+      <h3 class="text-lg font-bold text-secondary line-clamp-2" title="{{ c.title }}">
+        {{ c.title }}
+      </h3>
+      <div class="mt-1 text-sm text-gray-600 flex items-center justify-between">
+        <span class="truncate" title="{{ c.issuer }}">{{ c.issuer }}</span>
+        <time class="shrink-0" [attr.datetime]="c.date">{{ c.date | date:'MMM y':'':'en-US' }}</time>
+      </div>
+
+      <div class="mt-3 flex flex-wrap gap-2 min-h-[64px]">
+        <span *ngFor="let t of c.tags" class="text-xs px-2 py-1 rounded-full bg-secondary/10 text-secondary">
+          #{{ t }}
+        </span>
+      </div>
+
+      <div class="mt-auto pt-4 flex items-center gap-3">
+        <a *ngIf="c.link" [href]="c.link" target="_blank" rel="noopener"
+           class="inline-flex items-center justify-center rounded-lg px-3 py-2 text-sm font-semibold bg-background2 text-white hover:opacity-90 transition">
+          View certificate
+        </a>
+        <button type="button" (click)="openModal(c)"
+                class="inline-flex items-center justify-center rounded-lg px-3 py-2 text-sm font-semibold border border-gray-200 hover:bg-gray-50 transition">
+          Preview
+        </button>
+      </div>
+    </div>
+
+    <div class="pointer-events-none absolute inset-0 opacity-0 group-hover:opacity-100 transition bg-gradient-to-t from-black/0 via-transparent to-white/10"></div>
+  </article>
+</div>
+
+  </div>
+
+  <!-- Modal -->
+  <div
+    *ngIf="selected"
+    class="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm flex items-center justify-center p-4"
+    (click)="closeModal()"
+    aria-modal="true"
+    role="dialog"
+  >
+    <div
+      class="max-w-4xl w-full bg-white rounded-2xl overflow-hidden shadow-2xl"
+      (click)="$event.stopPropagation()"
+    >
+      <div class="flex items-center justify-between px-4 py-3 border-b">
+        <div>
+          <h3 class="text-lg font-bold text-secondary">
+            {{ selected?.title }}
+          </h3>
+          <p class="text-sm text-gray-600">
+            {{ selected?.issuer }} ·
+            <time>{{ selected?.date | date : "longDate" : "" : "en-US" }}</time>
+          </p>
+        </div>
+        <button
+          type="button"
+          (click)="closeModal()"
+          aria-label="Close"
+          class="rounded-full p-2 hover:bg-gray-100 transition"
+        >
+          ✕
+        </button>
+      </div>
+
+      <div class="p-4">
+        <img
+          [src]="selected?.image"
+          [alt]="selected?.title + ' - ' + selected?.issuer"
+          class="w-full h-auto rounded-lg border"
+          referrerpolicy="no-referrer"
+          onerror="this.src='/assets/certificates/placeholder.png'"
+        />
+        <div class="mt-4 flex items-center gap-3">
+          <a
+            *ngIf="selected?.link"
+            [href]="selected?.link"
+            target="_blank"
+            rel="noopener"
+            class="inline-flex items-center justify-center rounded-lg px-4 py-2 text-sm font-semibold bg-secondary text-white hover:opacity-90 transition"
+          >
+            Open in new tab
+          </a>
+          <button
+            type="button"
+            (click)="closeModal()"
+            class="inline-flex items-center justify-center rounded-lg px-4 py-2 text-sm font-semibold border hover:bg-gray-50"
+          >
+            Close
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

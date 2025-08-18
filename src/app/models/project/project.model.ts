@@ -5,6 +5,5 @@ export interface Project {
   techs: string[];
   github?: string;
   demo?: string;
+  category: 'data' | 'software';
 }
-
-
