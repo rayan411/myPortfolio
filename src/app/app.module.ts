@@ -8,13 +8,9 @@ import { FooterComponent } from './shared/footer/footer.component';
 import { HomeComponent } from './pages/home/home.component';
 import { WorkComponent } from './pages/work/work.component';
 import { CertificationsComponent } from './pages/certifications/certifications.component';
-import { ArticlsComponent } from './pages/articls/articls.component';
-import { AboutMeComponent } from './pages/about-me/about-me.component';
-import { ServicesComponent } from './pages/services/services.component';
 import { ContactComponent } from './pages/contact/contact.component';
 import { ProjectsComponent } from './pages/projects/projects.component';
 import { MainComponent } from './main/main.component';
-import { CertificatesComponent } from './pages/certificates/certificates.component';
 import { FormsModule } from '@angular/forms';
 
 @NgModule({
@@ -25,13 +21,9 @@ import { FormsModule } from '@angular/forms';
     HomeComponent,
     WorkComponent,
     CertificationsComponent,
-    ArticlsComponent,
-    AboutMeComponent,
-    ServicesComponent,
     ContactComponent,
     ProjectsComponent,
     MainComponent,
-    CertificatesComponent
   ],
   imports: [
     BrowserModule,

@@ -6,7 +6,6 @@ import { CertificationsComponent } from './pages/certifications/certifications.c
 import { ProjectsComponent } from './pages/projects/projects.component';
 import { Certificate } from './models/certificate.model';
 import { MainComponent } from './main/main.component';
-import { NgOptimizedImage } from '@angular/common';
 const routes: Routes = [
   { path: '', component: MainComponent }, // Default route
   { path: 'main', component: MainComponent },
@@ -20,9 +19,9 @@ const routes: Routes = [
 
 @NgModule({
   imports: [RouterModule.forRoot(routes, {
-    scrollPositionRestoration: 'enabled', // <-- يرجع لأعلى الصفحة
-    anchorScrolling: 'enabled'            // <-- في حال تستخدم روابط داخلية #
-  }) ,NgOptimizedImage],
+    scrollPositionRestoration: 'enabled', 
+    anchorScrolling: 'enabled'        
+  })],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }
