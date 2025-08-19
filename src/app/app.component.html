@@ -1,1 +1,7 @@
-<router-outlet></router-outlet>
+<!-- Spinner يظهر عند تحميل الموقع -->
+<div *ngIf="loading" class="fixed inset-0 z-50 flex items-center justify-center bg-white">
+  <div class="w-12 h-12 border-4 border-secondary border-t-transparent rounded-full animate-spin"></div>
+</div>
+
+<!-- محتوى الموقع -->
+<router-outlet *ngIf="!loading"></router-outlet>

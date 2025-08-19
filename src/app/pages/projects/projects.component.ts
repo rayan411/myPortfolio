@@ -19,4 +19,19 @@ export class ProjectsComponent {
   goHome() {
     this.router.navigateByUrl('/');
   }
+
+imgLoading: { [key: string]: boolean } = {};
+
+ngOnInit() {
+  // تحديد الصور التي يتم تحميلها الآن
+  [...this.dataProjects, ...this.softwareProjects].forEach(project => {
+    this.imgLoading[project.title] = true;
+  });
+}
+
+onImageLoad(title: string): void {
+  // عند اكتمال تحميل الصورة
+  this.imgLoading[title] = false;
+}
+
 }

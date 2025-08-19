@@ -80,5 +80,11 @@ private dataIds = new Set<string>([
 filteredSoftware: Certificate[] = [];
 filteredData: Certificate[] = [];
 
+
+imgLoading: { [key: number]: boolean } = {};
+
+onImageLoad(index: number): void {
+  this.imgLoading[index] = false;
+}
 }
 
