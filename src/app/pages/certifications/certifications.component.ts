@@ -1,3 +1,4 @@
+// certifications.component.ts
 import { Component } from '@angular/core';
 import { CERTIFICATES } from '../../data/certificates-data';
 import { Certificate } from '../../models/certificate.model';
@@ -8,8 +9,7 @@ import { Certificate } from '../../models/certificate.model';
   styleUrls: ['./certifications.component.css']
 })
 export class CertificationsComponent {
-
-certificates: Certificate[] = [];
+  certificates: Certificate[] = [];
   filtered: Certificate[] = [];
   query = '';
   issuer = 'all';
@@ -17,10 +17,20 @@ certificates: Certificate[] = [];
 
   issuers: string[] = [];
 
+  filteredSoftware: Certificate[] = [];
+  filteredData: Certificate[] = [];
+
+  imgLoading: { [key: number]: boolean } = {};
+
   ngOnInit() {
-    // تحميل وترتيب من الأحدث إلى الأقدم
     this.certificates = [...CERTIFICATES].sort((a, b) => (b.date > a.date ? 1 : -1));
     this.issuers = ['all', ...Array.from(new Set(this.certificates.map(c => c.issuer)))];
+
+    // Initialize loading flags for all images
+    this.certificates.forEach((_, i) => {
+      this.imgLoading[i] = true;
+    });
+
     this.applyFilters();
   }
 
@@ -36,8 +46,9 @@ certificates: Certificate[] = [];
       const matchIssuer = this.issuer === 'all' || c.issuer === this.issuer;
       return matchQuery && matchIssuer;
     });
-  this.filteredSoftware = this.filtered.filter(c => this.softwareIds.has(c.id));
-  this.filteredData     = this.filtered.filter(c => this.dataIds.has(c.id));
+
+    this.filteredSoftware = this.filtered.filter(c => this.softwareIds.has(c.id));
+    this.filteredData = this.filtered.filter(c => this.dataIds.has(c.id));
   }
 
   resetFilters() {
@@ -56,35 +67,28 @@ certificates: Certificate[] = [];
     document.body.style.overflow = '';
   }
 
+  onImageLoad(index: number): void {
+    this.imgLoading[index] = false;
+  }
+
   trackById(_: number, item: Certificate) {
     return item.id;
   }
-  
-// === CATGORY BY IDs ===
-private softwareIds = new Set<string>([
-  'coursera-programming-js',
-  'coursera-intro-mobile-dev',
-  'coursera-software-impl-testing',
-  'coursera-intro-software-testing',
-  'coursera-intro-automated-analysis',
-  'coursera-agile-software-dev'
-]);
 
-private dataIds = new Set<string>([
-  'coursera-data-driven-process',
-  'coursera-data-analysis-visualization',
-  'coursera-applied-analytics-decision-making',
-  'ine-jr-data-scientist'
-]);
+  // === CATEGORY BY IDs ===
+  private softwareIds = new Set<string>([  
+    'coursera-programming-js',
+    'coursera-intro-mobile-dev',
+    'coursera-software-impl-testing',
+    'coursera-intro-software-testing',
+    'coursera-intro-automated-analysis',
+    'coursera-agile-software-dev'
+  ]);
 
-filteredSoftware: Certificate[] = [];
-filteredData: Certificate[] = [];
-
-
-imgLoading: { [key: number]: boolean } = {};
-
-onImageLoad(index: number): void {
-  this.imgLoading[index] = false;
+  private dataIds = new Set<string>([
+    'coursera-data-driven-process',
+    'coursera-data-analysis-visualization',
+    'coursera-applied-analytics-decision-making',
+    'ine-jr-data-scientist'
+  ]);
 }
-}
-
