@@ -1,85 +1,55 @@
 <section class="min-h-screen flex items-center justify-center px-2 py-10">
   <div class="w-full max-w-6xl mx-auto">
-    <div
-      class="bg-white rounded-2xl shadow-md p-4 md:p-16 grid grid-cols-1 md:grid-cols-2 gap-0"
-    >
+    <div class="bg-white rounded-2xl shadow-md p-4 md:p-16 grid grid-cols-1 md:grid-cols-2 gap-0">
+      
       <!-- Left: Projects -->
-      <div
-        class="flex flex-col justify-between h-full items-center text-center md:items-start md:text-left md:border-r border-gray-200 md:pr-12 py-4 mb-10 md:mb-0"
-      >
+      <div class="flex flex-col justify-between h-full items-center text-center md:items-start md:text-left md:border-r border-gray-200 md:pr-12 py-4 mb-10 md:mb-0">
         <div>
-          <h2
-            class="text-4xl md:text-5xl font-extrabold text-[#2660A4] mb-6 leading-[1.15]"
-          >
-            I build &<br />
-            develop tech<br />
-            projects
+          <h2 class="text-4xl md:text-5xl font-extrabold text-[#2660A4] mb-6 leading-tight">
+            I build & develop<br />
+            tech projects
           </h2>
           <p class="text-base md:text-lg text-[#1E1B18] mb-10 leading-relaxed">
             Web applications,<br />
             open-source projects,<br />
-            and creative coding.
+            creative coding.
           </p>
         </div>
         <a
           [routerLink]="['/projects']"
-          class="flex items-center border-2 border-[#2660A4] text-[#2660A4] rounded-lg px-8 py-3 font-bold hover:bg-[#2660A4] hover:text-white transition uppercase tracking-widest text-sm md:text-base mt-2"
+          class="flex items-center justify-center h-14 w-72 border-2 border-[#2660A4] text-[#2660A4] rounded-lg px-6 py-3 font-bold hover:bg-[#2660A4] hover:text-white transition uppercase tracking-widest text-sm md:text-base"
         >
           See My Work
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            class="w-5 h-5 ml-3"
-            fill="none"
-            viewBox="0 0 24 24"
-          >
-            <path
-              stroke="currentColor"
-              stroke-width="2"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              d="M5 12h14m-7-7 7 7-7 7"
-            />
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 ml-3" fill="none" viewBox="0 0 24 24">
+            <path stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M5 12h14m-7-7 7 7-7 7"/>
           </svg>
         </a>
       </div>
+
       <!-- Right: Certificates -->
-      <div
-        class="flex flex-col justify-between h-full items-center text-center md:items-start md:text-left md:pl-12 py-4"
-      >
+      <div class="flex flex-col justify-between h-full items-center text-center md:items-start md:text-left md:pl-12 py-4">
         <div>
-          <h2
-            class="text-4xl md:text-5xl font-extrabold text-[#2660A4] mb-6 leading-[1.15]"
-          >
-            My Certificates<br />
-            & Achievements
+          <h2 class="text-4xl md:text-5xl font-extrabold text-[#2660A4] mb-6 leading-tight">
+            My Certificates &<br />
+            Achievements
           </h2>
           <p class="text-base md:text-lg text-[#1E1B18] mb-10 leading-relaxed">
             Professional certificates,<br />
-            online courses, and academic<br />
-            accomplishments that showcase my expertise.
+            online courses,<br />
+            academic accomplishments.
           </p>
         </div>
         <a
-         [routerLink]="['/certificate']"
-          class="flex items-center border-2 border-[#2660A4] text-[#2660A4] rounded-lg px-8 py-3 font-bold hover:bg-[#2660A4] hover:text-white transition uppercase tracking-widest text-sm md:text-base mt-2"
+          [routerLink]="['/certificate']"
+          class="flex items-center justify-center  h-14 w-72  border-2 border-secondary text-secondary rounded-lg px-6 py-3 font-bold hover:bg-secondary hover:text-white transition uppercase tracking-widest text-sm md:text-base"
         >
           View Certificates
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            class="w-5 h-5 ml-3"
-            fill="none"
-            viewBox="0 0 24 24"
-          >
-            <path
-              stroke="currentColor"
-              stroke-width="2"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              d="M5 12h14m-7-7 7 7-7 7"
-            />
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 ml-3" fill="none" viewBox="0 0 24 24">
+            <path stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M5 12h14m-7-7 7 7-7 7"/>
           </svg>
         </a>
       </div>
+
     </div>
   </div>
 </section>

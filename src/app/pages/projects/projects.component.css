@@ -1,8 +1,6 @@
-/* تحسين الوصولية */
 a:focus-visible, button:focus-visible {
   outline: 2px solid rgba(38, 96, 164, 0.5); /* secondary/50 */
   outline-offset: 2px;
 }
 
-/* تقليل "قفزة" التحويل */
 .group { will-change: transform; }

@@ -23,14 +23,14 @@ export class ProjectsComponent {
 imgLoading: { [key: string]: boolean } = {};
 
 ngOnInit() {
-  // تحديد الصور التي يتم تحميلها الآن
+  // seclected photo the donwload now
   [...this.dataProjects, ...this.softwareProjects].forEach(project => {
     this.imgLoading[project.title] = true;
   });
 }
 
 onImageLoad(title: string): void {
-  // عند اكتمال تحميل الصورة
+  // whene complete load of photo
   this.imgLoading[title] = false;
 }
 

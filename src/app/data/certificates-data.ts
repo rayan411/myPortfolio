@@ -88,7 +88,7 @@ export const CERTIFICATES: Certificate[] = [
   title: 'MCIT Jr Data Scientist',
   issuer: 'INE',
   date: '2025-06-03',
-  image: '/assets/images/jrData.jpg', // لو عندك رابط صورة مباشر أفضل نستبدله هنا
+  image: '/assets/images/jrData.jpg', 
   link: 'https://certs.ine.com/83d382b1-b195-4269-91a8-c4ac5b731cdb#acc.cZ2YI3Ke',
   tags: [
     'Data Science',
