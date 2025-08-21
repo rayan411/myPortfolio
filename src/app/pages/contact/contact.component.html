@@ -1,44 +1,156 @@
-<section class="min-h-screen flex items-center justify-center bg-background px-2 py-10">
+<section
+  class="min-h-screen flex items-center justify-center bg-background px-2 py-10"
+>
   <div class="w-full max-w-xl mx-auto">
-    <div class=" rounded-2xl p-6 sm:p-12">
+    <div class="rounded-2xl p-6 sm:p-12">
       <div class="text-center mb-10">
-        <h2 class="text-3xl sm:text-4xl font-extrabold text-secondary mb-2 font-readex">Send me a message!</h2>
-        <p class="text-base text-background2/80 font-poppins">Got a question or proposal, or just want to say hello? Go ahead.</p>
+        <h2
+          class="text-3xl sm:text-4xl font-extrabold text-secondary mb-2 font-readex"
+        >
+          Send me a message!
+        </h2>
+        <p class="text-base text-background2/80 font-poppins">
+          Got a question or proposal, or just want to say hello? Go ahead.
+        </p>
       </div>
-      <!-- Form -->
-      <form action="https://formspree.io/f/myzpdqpd" method="POST" class="flex flex-col gap-7">
-  <div class="flex flex-col md:flex-row gap-7">
-    <div class="flex-1">
-      <label for="name" class="block text-background2 font-bold mb-2 text-left">Your Name</label>
-      <input type="text" id="name" name="name" placeholder="Enter your name"
-             class="w-full border-b-2 border-background2/20 focus:border-secondary transition outline-none py-3 text-primary bg-transparent font-poppins placeholder:text-background2/50 text-base text-left"
-             autocomplete="off" required>
-    </div>
-    <div class="flex-1">
-      <label for="email" class="block text-background2 font-bold mb-2 text-left">Email Address</label>
-      <input type="email" id="email" name="email" placeholder="Enter your email address"
-             class="w-full border-b-2 border-background2/20 focus:border-secondary transition outline-none py-3 text-primary bg-transparent font-poppins placeholder:text-background2/50 text-base text-left"
-             autocomplete="off" required>
-    </div>
-  </div>
-  <div>
-    <label for="message" class="block text-background2 font-bold mb-2 text-left">Your Message</label>
-    <textarea id="message" name="message" rows="3" placeholder="Hi, I think we need a design system..."
-              class="w-full border-b-2 border-background2/20 focus:border-secondary transition outline-none py-3 text-primary bg-transparent font-poppins placeholder:text-background2/50 text-base resize-y text-left" required></textarea>
-  </div>
-  <div class="flex justify-center mt-2">
-    <button type="submit"
-            class="px-10 py-3 border-2 border-secondary text-secondary font-bold rounded-xl hover:bg-secondary hover:text-background transition-all duration-150 font-readex shadow-sm focus:outline-none focus:ring-2 focus:ring-secondary focus:ring-offset-2 active:scale-95 tracking-wide flex items-center gap-2">
-      SHOOT
-      <svg class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-        <path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
-      </svg>
-    </button>
-  </div>
-</form>
+      <form (submit)="onSubmit($event)" class="flex flex-col gap-7" novalidate>
+        <!-- Optional: subject + honeypot (anti-spam) -->
+        <input
+          type="hidden"
+          name="_subject"
+          value="New message from Portfolio"
+        />
+        <input
+          type="text"
+          name="_gotcha"
+          class="hidden"
+          tabindex="-1"
+          autocomplete="off"
+        />
 
+        <div class="flex flex-col md:flex-row gap-7">
+          <div class="flex-1">
+            <label
+              for="name"
+              class="block text-background2 font-bold mb-2 text-left"
+              >Your Name</label
+            >
+            <input
+              id="name"
+              name="name"
+              type="text"
+              placeholder="Enter your name"
+              class="w-full border-b-2 border-background2/20 focus:border-secondary transition outline-none py-3 text-primary bg-transparent font-poppins placeholder:text-background2/50 text-base text-left"
+              autocomplete="off"
+              required
+            />
+          </div>
+
+          <div class="flex-1">
+            <label
+              for="email"
+              class="block text-background2 font-bold mb-2 text-left"
+              >Email Address</label
+            >
+            <input
+              id="email"
+              name="email"
+              type="email"
+              placeholder="Enter your email address"
+              class="w-full border-b-2 border-background2/20 focus:border-secondary transition outline-none py-3 text-primary bg-transparent font-poppins placeholder:text-background2/50 text-base text-left"
+              autocomplete="off"
+              required
+            />
+          </div>
+        </div>
+
+        <div>
+          <label
+            for="message"
+            class="block text-background2 font-bold mb-2 text-left"
+            >Your Message</label
+          >
+          <textarea
+            id="message"
+            name="message"
+            rows="3"
+            placeholder="Hi, I think we need a design system..."
+            class="w-full border-b-2 border-background2/20 focus:border-secondary transition outline-none py-3 text-primary bg-transparent font-poppins placeholder:text-background2/50 text-base resize-y text-left"
+            required
+          ></textarea>
+        </div>
+
+        <div class="flex justify-center mt-2">
+          <button
+            type="submit"
+            [disabled]="sending"
+            class="group relative mx-auto w-full sm:w-72 h-14 border-2 border-secondary text-secondary rounded-lg px-6 py-3 font-bold hover:bg-secondary hover:text-white transition uppercase tracking-widest text-sm md:text-base"
+        >
+            <!-- circel classic -->
+            <span
+              class="pointer-events-none absolute inset-0 rounded-2xl ring-1 ring-secondary/25"
+            ></span>
+
+            <!-- button contact-->
+            <span class="flex h-full items-center justify-center gap-2 px-8">
+              <ng-container *ngIf="!sending; else sendingTpl"
+                >SHOOT</ng-container
+              >
+              <svg
+                class="w-5 h-5"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                viewBox="0 0 24 24"
+                aria-hidden="true"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M17 8l4 4m0 0l-4 4m4-4H3"
+                />
+              </svg>
+            </span>
+          </button>
+        </div>
+
+        <!-- رسائل الحالة (إنجليزية) مع ألوان كلاسيكية هادئة -->
+        <div class="mt-4" role="status" aria-live="polite">
+          <div
+            *ngIf="sending"
+            class="mx-auto w-full sm:w-[28rem] rounded-xl border border-amber-300 bg-amber-50/70 text-amber-900 px-4 py-3 shadow-sm"
+          >
+            <p class="font-medium">Sending your message — please hold on.</p>
+          </div>
+
+          <div
+            *ngIf="status === 'success'"
+            class="mx-auto w-full sm:w-[28rem] rounded-xl border border-green-300 bg-green-50/80 text-green-800 px-4 py-3 shadow-sm"
+          >
+            <p class="font-semibold">Thanks! Your message has been sent.</p>
+            <p class="text-sm opacity-90">
+              I’ll get back to you within 24–48 hours.
+            </p>
+          </div>
+
+          <div
+            *ngIf="status === 'error'"
+            class="mx-auto w-full sm:w-[28rem] rounded-xl border border-rose-300 bg-rose-50/80 text-rose-800 px-4 py-3 shadow-sm"
+          >
+            <p class="font-semibold">We couldn’t send your message.</p>
+            <p class="text-sm opacity-90">
+              Please try again in a moment or email me directly at
+              <a
+                class="underline underline-offset-4"
+                href="mailto:contact@yourdomain.com"
+                >contact@yourdomain.com</a
+              >.
+            </p>
+          </div>
+        </div>
+
+        <ng-template #sendingTpl>Sending…</ng-template>
+      </form>
     </div>
   </div>
 </section>
-
-
